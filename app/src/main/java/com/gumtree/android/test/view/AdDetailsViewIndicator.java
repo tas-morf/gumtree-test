@@ -4,6 +4,7 @@ import com.gumtree.android.test.R;
 import com.gumtree.android.test.controller.listener.AdDetailsEventListener;
 import com.gumtree.android.test.model.bean.Ad;
 import com.gumtree.android.test.model.bean.Contact;
+import com.gumtree.android.test.view.adapter.ImageViewPagerAdaper;
 import com.gumtree.android.test.view.widget.AdDetailsMetadataView;
 
 import android.content.res.Resources;
@@ -23,7 +24,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
     private View mContactLayout;
     private View mEmptyText;
     private View mProgress;
-    private TextView mPicsButton;
+    private TextView mPicsNumber;
     private TextView mTitle;
     private TextView mLocationText;
     private TextView mPriceText;
@@ -35,6 +36,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
     private View mCallButton;
     private View mSmsButton;
     private View mEmailButton;
+    private ViewPager mImagePager;
 
     public AdDetailsViewIndicator(Resources res) {
         mRes = res;
@@ -45,14 +47,14 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             AdDetailsEventListener adDetailsEventListener) {
         mAdDetailsEventListener = adDetailsEventListener;
         View rootView = inflater.inflate(R.layout.fragment_ad_details, container, false);
-        ViewPager imagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
-        
+        mImagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
+
         mMainContent = rootView.findViewById(R.id.main_content);
         mContactLayout = rootView.findViewById(R.id.contact_layout);
         mEmptyText = rootView.findViewById(R.id.empty_text);
         mProgress = rootView.findViewById(R.id.progress);
         
-        mPicsButton = (TextView)rootView.findViewById(R.id.pics_button);
+        mPicsNumber = (TextView)rootView.findViewById(R.id.pics_number);
         mTitle = (TextView)rootView.findViewById(R.id.title);
         mLocationText = (TextView)rootView.findViewById(R.id.location_text);
         mPriceText = (TextView)rootView.findViewById(R.id.price_text);
@@ -66,10 +68,10 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mEmailButton = rootView.findViewById(R.id.email_button);
 
 
-        mPicsButton.setOnClickListener(this);
         mCallButton.setOnClickListener(this);
         mSmsButton.setOnClickListener(this);
         mEmailButton.setOnClickListener(this);
+        mImagePager.setOnClickListener(this);
         rootView.findViewById(R.id.report_ad_button).setOnClickListener(this);
         return rootView;
     }
@@ -88,8 +90,10 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mProgress.setVisibility(View.GONE);
         mMainContent.setVisibility(View.VISIBLE);
         mContactLayout.setVisibility(View.VISIBLE);
-        
-        mPicsButton.setText(String.valueOf(ad.getImageUrls().size()));
+
+        mImagePager.setAdapter(new ImageViewPagerAdaper(mImagePager.getContext(),
+                ad.getImageUrls()));
+        mPicsNumber.setText(String.valueOf(ad.getImageUrls().size()));
         mTitle.setText(ad.getTitle());
         mLocationText.setText(ad.getLocation());
         mPriceText.setText(mRes.getString(R.string.price_str, ad.getPrice()));
@@ -135,8 +139,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             case R.id.sms_button:
                 break;
             case R.id.email_button:
-                break;
-            case R.id.pics_button:
+                break;            
+            case R.id.image_viewpager:
                 break;
         }
     }

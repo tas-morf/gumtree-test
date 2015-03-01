@@ -13,7 +13,7 @@ import android.os.Handler;
 public class FakeAdFetcher implements AdFetcher {
 
     //delay for 3 seconds
-    private static final long FETCH_DELAY = 3000;
+    private static final long FETCH_DELAY = 2000;
     private Handler mHandler;
     private OnAdFetchedListener mListener = OnAdFetchedListener.NO_OP;
     private FakeData mFakeData;
