@@ -1,8 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/greenActionBar</item>
     </style>
 
+    <style name="greenActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/gumtree_green</item>
+        <item name="android:titleTextStyle">@style/whiteActionBarTitle</item>
+    </style>
+
+    <style name="whiteActionBarTitle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
 </resources>

@@ -1,11 +1,9 @@
 package com.gumtree.android.test.controller.fragment;
 
 import com.gumtree.android.test.R;
-import com.gumtree.android.test.controller.activity.MainActivity;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
