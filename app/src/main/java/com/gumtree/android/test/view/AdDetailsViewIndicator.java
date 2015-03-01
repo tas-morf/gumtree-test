@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickListener {
 
     private static final float DEFAULT_ZOOM_LEVEL = 12;
@@ -156,6 +158,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         MarkerOptions options = new MarkerOptions();
         options.position(latLng);
         mMap.addMarker(options);
+        mLocationText.setTag("http://maps.google.com/maps?q=loc:" + ad.getLatitude() + "," + ad.getLongitude() + " (" + 
+                ad.getTitle() + ")");
     }
 
     @Override
@@ -172,14 +176,19 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             case R.id.report_ad_button:
                 break;
             case R.id.call_button:
+                mAdDetailsEventListener.onCallRequested((String)v.getTag());
                 break;
             case R.id.sms_button:
+                mAdDetailsEventListener.onSmsRequested((String) v.getTag());
                 break;
             case R.id.email_button:
+                mAdDetailsEventListener.onEmailRequested((String) v.getTag());
                 break;            
             case R.id.image_viewpager:
+                mAdDetailsEventListener.onFullscreenImagesRequested(null);
                 break;
             case R.id.location_text:
+                mAdDetailsEventListener.onGoToMapsRequested((String)v.getTag());
                 break;
         }
     }

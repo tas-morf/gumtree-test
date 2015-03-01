@@ -12,7 +12,7 @@ public class FakeData {
             .title("Alpha Romeo 147 1.6 T Spark 52 reg")
             .contact(Contact.newBuilder()
                     .name("Cool dude")
-                            //no email
+                    .email("crazy_email@email.com")
                     .phone("02055556666")
                     .postingPeriod("under a month")
                     .build())
