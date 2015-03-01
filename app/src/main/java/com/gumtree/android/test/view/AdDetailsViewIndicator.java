@@ -72,6 +72,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mSmsButton.setOnClickListener(this);
         mEmailButton.setOnClickListener(this);
         mImagePager.setOnClickListener(this);
+        mLocationText.setOnClickListener(this);
         rootView.findViewById(R.id.report_ad_button).setOnClickListener(this);
         return rootView;
     }
@@ -90,10 +91,16 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mProgress.setVisibility(View.GONE);
         mMainContent.setVisibility(View.VISIBLE);
         mContactLayout.setVisibility(View.VISIBLE);
-
-        mImagePager.setAdapter(new ImageViewPagerAdaper(mImagePager.getContext(),
-                ad.getImageUrls()));
-        mPicsNumber.setText(String.valueOf(ad.getImageUrls().size()));
+        
+        int imagesSize = ad.getImageUrls().size();
+        if(imagesSize > 0) {
+            mImagePager.setAdapter(new ImageViewPagerAdaper(mImagePager.getContext(),
+                    ad.getImageUrls()));
+            mPicsNumber.setText(String.valueOf(imagesSize));
+        } else {
+            mImagePager.setVisibility(View.GONE);
+            mPicsNumber.setVisibility(View.GONE);
+        }
         mTitle.setText(ad.getTitle());
         mLocationText.setText(ad.getLocation());
         mPriceText.setText(mRes.getString(R.string.price_str, ad.getPrice()));
@@ -141,6 +148,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             case R.id.email_button:
                 break;            
             case R.id.image_viewpager:
+                break;
+            case R.id.location_text:
                 break;
         }
     }

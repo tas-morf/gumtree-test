@@ -78,7 +78,7 @@
                 android:layout_below="@id/location_price_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin" />
+                android:layout_marginBottom="@dimen/default_margin" />
 
             <TextView
                 android:id="@+id/description_label"
@@ -159,19 +159,19 @@
             <Button
                 android:id="@+id/call_button"
                 style="@style/contactButtonStyle"
-                android:text="@string/call"/>
+                android:text="@string/call" />
 
             <Button
                 android:id="@+id/sms_button"
                 android:text="@string/sms"
                 style="@style/contactButtonStyle" />
-            
+
             <Button
                 android:id="@+id/email_button"
                 style="@style/contactButtonStyle"
-                android:text="@string/email"/>
-            
-            </LinearLayout>
+                android:text="@string/email" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -180,14 +180,14 @@
         android:layout_height="wrap_content"
         android:text="@string/error"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </FrameLayout>
     
