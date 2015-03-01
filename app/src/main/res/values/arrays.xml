@@ -6,5 +6,6 @@
         <item>Job Ad</item>
         <item>Service Ad</item>
         <item>Pet Ad</item>
+        <item>Failure</item>
     </string-array>
 </resources>
