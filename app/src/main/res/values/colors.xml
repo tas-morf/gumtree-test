@@ -4,4 +4,8 @@
 
     <color name="gumtree_green">#7bb74c</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="separator_color">#999999</color>
+    <color name="price_color">#555555</color>
+    <color name="white_semi_trans">#bbffffff</color>
 </resources>

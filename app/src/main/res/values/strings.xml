@@ -2,4 +2,14 @@
     <string name="app_name">Gumtree Test app</string>
     <string name="not_implemented_yet">Not implemented yet</string>
     <string name="ad_details">Ad details</string>
+    <string name="description">Description</string>
+    <string name="report_ad">REPORT AD</string>
+    <string name="call">CALL</string>
+    <string name="sms">SMS</string>
+    <string name="email">EMAIL</string>
+    <string name="error">An error has happened while retrieving the ad.</string>
+    <string name="price_str">£%d</string>
+    <string name="reference_number_str">Ad ref %d</string>
+    <string name="contact_prompt_str">Contact %s</string>
+    <string name="contact_posting_period_str">Posting for %s</string>
 </resources>

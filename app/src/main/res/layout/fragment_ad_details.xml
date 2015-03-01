@@ -2,10 +2,192 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/contact_layout_height"
+            android:background="@color/white">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/image_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_view_pager_height"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/pics_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@android:drawable/ic_menu_camera"
+                android:drawablePadding="@dimen/default_drawable_padding"
+                android:layout_alignBottom="@id/image_viewpager"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_viewpager"
+                android:textSize="@dimen/ad_title_text_size"
+                android:text="@string/not_implemented_yet"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/default_margin" />
+
+            <View
+                android:layout_below="@+id/title"
+                style="@style/separatorStyle" />
+
+            <LinearLayout
+                android:id="@+id/location_price_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_margin="@dimen/default_margin">
+
+                <TextView
+                    android:id="@+id/location_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@android:drawable/ic_menu_compass"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:drawablePadding="@dimen/default_drawable_padding" />
+
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/price_color"
+                    android:textSize="@dimen/price_text_size"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <com.gumtree.android.test.view.widget.AdDetailsMetadataView
+                android:id="@+id/ad_details_metadata_view"
+                android:layout_below="@id/location_price_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin" />
+
+            <TextView
+                android:id="@+id/description_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ad_details_metadata_view"
+                android:text="@string/description"
+                android:textColor="@color/gumtree_green"
+                android:textSize="@dimen/description_label_text_size"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin" />
+
+            <View
+                android:layout_below="@id/description_label"
+                style="@style/separatorStyle" />
+
+            <TextView
+                android:id="@+id/description_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description_label"
+                android:layout_margin="@dimen/default_margin" />
+
+            <TextView
+                android:id="@+id/reference_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description_text"
+                android:textStyle="italic"
+                android:layout_margin="@dimen/default_margin" />
+
+            <Button
+                android:id="@+id/report_ad_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/report_ad"
+                android:drawableLeft="@android:drawable/ic_dialog_alert"
+                android:drawablePadding="@dimen/default_drawable_padding"
+                android:layout_below="@id/reference_number"
+                android:layout_margin="@dimen/default_margin" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/contact_layout"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/contact_layout_height"
+        android:padding="@dimen/default_margin"
+        android:orientation="vertical"
+        android:background="@color/white_semi_trans"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/contact_prompt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:ellipsize="marquee" />
+
+            <TextView
+                android:id="@+id/contact_posting_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/call_button"
+                style="@style/contactButtonStyle"
+                android:text="@string/call"/>
+
+            <Button
+                android:id="@+id/sms_button"
+                android:text="@string/sms"
+                style="@style/contactButtonStyle" />
+            
+            <Button
+                android:id="@+id/email_button"
+                style="@style/contactButtonStyle"
+                android:text="@string/email"/>
+            
+            </LinearLayout>
+    </LinearLayout>
+
     <TextView
+        android:id="@+id/empty_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="@string/error"
         android:layout_gravity="center"
-        android:text="@string/not_implemented_yet"/>
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>
+    
