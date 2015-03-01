@@ -1,6 +1,5 @@
 package com.gumtree.android.test.view;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,8 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.List;
 
 public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickListener {
 
@@ -64,7 +61,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         View rootView = inflater.inflate(R.layout.fragment_ad_details, container, false);
         mImagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
 
-        mMainContent = rootView.findViewById(R.id.main_content);
+        mMainContent = rootView.findViewById(R.id.main_scrollview);
         mContactLayout = rootView.findViewById(R.id.contact_layout);
         mEmptyText = rootView.findViewById(R.id.empty_text);
         mProgress = rootView.findViewById(R.id.progress);
@@ -84,7 +81,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         MapsInitializer.initialize(container.getContext());
 
 
-        
+
         mContactPrompt = (TextView)rootView.findViewById(R.id.contact_prompt);
         mContactPostingPeriod = (TextView)rootView.findViewById(R.id.contact_posting_period);
         mCallButton = rootView.findViewById(R.id.call_button);

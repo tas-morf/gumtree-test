@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/fragment_ad_details">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ad_title_text_size"
+        android:text="@string/not_implemented_yet"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/default_margin" />
+
+    <View
+        android:layout_below="@+id/title"
+        style="@style/separatorStyle" />
+
+    <LinearLayout
+        android:id="@+id/location_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_margin="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/location_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_compass"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:drawablePadding="@dimen/default_drawable_padding" />
+
+        <TextView
+            android:id="@+id/price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/price_color"
+            android:textSize="@dimen/price_text_size"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <com.gumtree.android.test.view.widget.AdDetailsMetadataView
+        android:id="@+id/ad_details_metadata_view"
+        android:layout_below="@id/location_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin" />
+
+    <TextView
+        android:id="@+id/description_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ad_details_metadata_view"
+        android:text="@string/description"
+        android:textColor="@color/gumtree_green"
+        android:textSize="@dimen/description_label_text_size"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin" />
+
+    <View
+        android:layout_below="@id/description_label"
+        style="@style/separatorStyle" />
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description_label"
+        android:layout_margin="@dimen/default_margin" />
+
+    <TextView
+        android:id="@+id/reference_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description_text"
+        android:textStyle="italic"
+        android:layout_margin="@dimen/default_margin" />
+
+</RelativeLayout>

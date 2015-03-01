@@ -30,4 +30,23 @@
         <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
     </style>
 
+    <style name="mainAdLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/image_viewpager</item>
+    </style>
+    
+    <style name="mapviewAdLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/map_height</item>
+        <item name="android:layout_below">@id/main_layout</item>
+    </style>
+
+    <style name="reportAdLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/mapview</item>
+        <item name="android:layout_margin">@dimen/default_margin</item>
+    </style>
+
 </resources>

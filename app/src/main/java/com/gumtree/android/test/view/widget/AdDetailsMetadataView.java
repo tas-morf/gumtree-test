@@ -15,6 +15,10 @@ import java.util.List;
 
 public class AdDetailsMetadataView extends LinearLayout {
 
+    private boolean mIsTablet;
+    private LinearLayout mLinearLayoutL;
+    private LinearLayout mLinearLayoutR;
+
     public AdDetailsMetadataView(Context context) {
         super(context);
     }
@@ -27,19 +31,45 @@ public class AdDetailsMetadataView extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
+    @SuppressWarnings("ResourceType")
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        setOrientation(VERTICAL);
+        mIsTablet = getResources().getBoolean(R.bool.is_tablet);
+        if (mIsTablet) {
+            setOrientation(HORIZONTAL);
+            mLinearLayoutL = new LinearLayout(getContext());
+            mLinearLayoutL.setOrientation(VERTICAL);
+            addView(mLinearLayoutL, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1));
+            mLinearLayoutR = new LinearLayout(getContext());
+            mLinearLayoutR.setOrientation(VERTICAL);
+            addView(mLinearLayoutR, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1));
+        } else {
+            setOrientation(VERTICAL);
+        }
+
     }
 
     public void populateWith(List<Metadata> metadataList) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        for(Metadata data : metadataList) {
-            View metadataRow = inflater.inflate(R.layout.metadata_row, this, false);
-            ((TextView)metadataRow.findViewById(R.id.metadata_name)).setText(data.getName());
-            ((TextView)metadataRow.findViewById(R.id.metadata_value)).setText(data.getValue());
-            addView(metadataRow);
+        int i = 0;
+        for (Metadata data : metadataList) {
+            LinearLayout container;
+            if (mIsTablet) {
+                if(i%2 == 0) {
+                    container = mLinearLayoutL;
+                } else {
+                    container = mLinearLayoutR;
+                }
+            } else {
+                container = this;
+            }
+            View metadataRow = inflater.inflate(R.layout.metadata_row, container, false);
+            ((TextView) metadataRow.findViewById(R.id.metadata_name)).setText(data.getName());
+            ((TextView) metadataRow.findViewById(R.id.metadata_value)).setText(data.getValue());
+            container.addView(metadataRow);
+            i++;
         }
+
     }
 }

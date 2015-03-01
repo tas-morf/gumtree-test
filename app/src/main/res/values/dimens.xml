@@ -13,5 +13,5 @@
     <dimen name="price_text_size">24sp</dimen>
     <dimen name="description_label_text_size">20sp</dimen>
     <dimen name="contact_layout_height">90dp</dimen>
-    <dimen name="map_height">120dp</dimen>
+    <dimen name="map_height">220dp</dimen>
 </resources>
