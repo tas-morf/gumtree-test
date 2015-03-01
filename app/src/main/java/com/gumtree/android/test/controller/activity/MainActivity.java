@@ -1,31 +1,32 @@
 package com.gumtree.android.test.controller.activity;
 
 import com.gumtree.android.test.R;
+import com.gumtree.android.test.controller.fragment.AdExamplesFragment;
+import com.gumtree.android.test.controller.listener.OnAdSelectedListener;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 
-public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
+public class MainActivity extends Activity implements OnAdSelectedListener {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ListView mainList = (ListView) findViewById(R.id.main_list);
-        mainList.setOnItemClickListener(this);
-        mainList.setAdapter(ArrayAdapter.createFromResource(this,
-                R.array.navigation_items,
-                android.R.layout.simple_list_item_1));
+        if(getResources().getBoolean(R.bool.is_tablet)) {
+            //No need for this when we are looking at a tablet
+            startActivity(AdDetailsActivity.getAdDetailsIntent(this, 0));
+            finish();
+        } else {
+            getFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, AdExamplesFragment.newInstance())
+                    .commit();
+        }
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(AdDetailsActivity.getAdDetailsIntent(this, position));
+    public void onAdSelected(int adId) {
+        startActivity(AdDetailsActivity.getAdDetailsIntent(this, adId));
     }
 }

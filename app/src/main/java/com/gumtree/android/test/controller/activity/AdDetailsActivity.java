@@ -1,13 +1,15 @@
 package com.gumtree.android.test.controller.activity;
 
-import com.gumtree.android.test.controller.fragment.EmptyFragment;
+import com.gumtree.android.test.R;
+import com.gumtree.android.test.controller.fragment.AdDetailsFragment;
+import com.gumtree.android.test.controller.listener.OnAdSelectedListener;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class AdDetailsActivity extends Activity {
+public class AdDetailsActivity extends Activity implements OnAdSelectedListener {
 
     private static final String PARAM_ITEM_ID = "itemId";
 
@@ -16,11 +18,20 @@ public class AdDetailsActivity extends Activity {
         intent.putExtra(PARAM_ITEM_ID, itemId);
         return intent;
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, EmptyFragment.newInstance()).commit();
+        setContentView(R.layout.activity_ad_details);
+        onAdSelected(getIntent().getIntExtra(PARAM_ITEM_ID, 0));
     }
 
+    @Override
+    public void onAdSelected(int adId) {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.details_content,
+                        AdDetailsFragment.newInstance(adId))
+                .commit();
+    }
 }

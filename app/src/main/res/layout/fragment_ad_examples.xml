@@ -3,9 +3,8 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/main_list"
+        android:id="@+id/example_ads_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </FrameLayout>
