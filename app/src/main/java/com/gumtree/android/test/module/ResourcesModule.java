@@ -2,11 +2,11 @@ package com.gumtree.android.test.module;
 
 import android.content.res.Resources;
 
-import static com.gumtree.android.test.module.ApplicationModule.getApplicationContext;
+import static com.gumtree.android.test.module.ApplicationModule.applicationContext;
 
 public class ResourcesModule {
 
     public static Resources resources() {
-        return getApplicationContext().getResources();
+        return applicationContext().getResources();
     }
 }

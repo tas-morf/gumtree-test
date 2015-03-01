@@ -2,11 +2,11 @@ package com.gumtree.android.test.module;
 
 import android.os.Handler;
 
-import static com.gumtree.android.test.module.ApplicationModule.getApplicationContext;
+import static com.gumtree.android.test.module.ApplicationModule.applicationContext;
 
 public class HandlerModule {
 
     public static Handler mainThreadHandler() {
-        return new Handler(getApplicationContext().getMainLooper());
+        return new Handler(applicationContext().getMainLooper());
     }
 }

@@ -23,6 +23,7 @@ public class FakeData {
             .reference(1102705155)
             .latitude(51.513074)
             .longitude(-0.064094)
+            .shareUrl("http://www.gumtree.com/p/pets/premium-quality-hypoallergenic-dog-food/1102460807.")
             .imageUrls(Arrays.asList("http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/hUEAAOSwe-FU2cyC/$_86.JPG",
                     "http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/IKMAAOSwPhdU2cyJ/$_86.JPG",
                     "http://i.ebayimg.com/00/s/NTI2WDkzNg==/z/3agAAOSwEeFU2cyU/$_86.JPG",

@@ -12,7 +12,7 @@ public class ApplicationModule {
         sGumtreeApplication = gumtreeApplication;
     }
     
-    public static Context getApplicationContext() {
+    public static Context applicationContext() {
         return sGumtreeApplication;
     }
 }

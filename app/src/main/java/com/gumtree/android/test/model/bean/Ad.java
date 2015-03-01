@@ -7,6 +7,7 @@ public class Ad {
     private String title;
     private String description;
     private String location;
+    private String shareUrl;
     private int price;
     private long reference;
     private Contact contact;
@@ -19,6 +20,7 @@ public class Ad {
         title = builder.title;
         description = builder.description;
         location = builder.location;
+        shareUrl = builder.shareUrl;
         price = builder.price;
         reference = builder.reference;
         contact = builder.contact;
@@ -42,6 +44,10 @@ public class Ad {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
     }
 
     public int getPrice() {
@@ -77,6 +83,7 @@ public class Ad {
         private String title;
         private String description;
         private String location;
+        private String shareUrl;
         private int price;
         private long reference;
         private Contact contact;
@@ -100,6 +107,11 @@ public class Ad {
 
         public Builder location(String location) {
             this.location = location;
+            return this;
+        }
+
+        public Builder shareUrl(String shareUrl) {
+            this.shareUrl = shareUrl;
             return this;
         }
 
