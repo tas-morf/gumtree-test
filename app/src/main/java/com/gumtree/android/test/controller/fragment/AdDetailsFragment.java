@@ -51,7 +51,7 @@ public class AdDetailsFragment extends Fragment implements AdDetailsEventListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = mAdDetailsIndicator.initialize(inflater, container, this);
+        View view = mAdDetailsIndicator.initialize(inflater, container, this, null);
         mAdFetcher.fetchAd(getArguments().getInt(PARAM_AD_ID));
         mAdDetailsIndicator.showProgress();
         return view;

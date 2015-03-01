@@ -1,5 +1,14 @@
 package com.gumtree.android.test.view;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.gumtree.android.test.R;
 import com.gumtree.android.test.controller.listener.AdDetailsEventListener;
 import com.gumtree.android.test.model.bean.Ad;
@@ -8,6 +17,7 @@ import com.gumtree.android.test.view.adapter.ImageViewPagerAdaper;
 import com.gumtree.android.test.view.widget.AdDetailsMetadataView;
 
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +26,7 @@ import android.widget.TextView;
 
 public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickListener {
 
+    private static final float DEFAULT_ZOOM_LEVEL = 12;
     private final Resources mRes;
     
     private AdDetailsEventListener mAdDetailsEventListener;
@@ -37,6 +48,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
     private View mSmsButton;
     private View mEmailButton;
     private ViewPager mImagePager;
+    private MapView mMapView;
+    private GoogleMap mMap;
 
     public AdDetailsViewIndicator(Resources res) {
         mRes = res;
@@ -44,7 +57,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
 
     @Override
     public View initialize(LayoutInflater inflater, ViewGroup container,
-            AdDetailsEventListener adDetailsEventListener) {
+            AdDetailsEventListener adDetailsEventListener, Bundle savedInstanceState) {
         mAdDetailsEventListener = adDetailsEventListener;
         View rootView = inflater.inflate(R.layout.fragment_ad_details, container, false);
         mImagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
@@ -61,6 +74,15 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mMetadataView = (AdDetailsMetadataView)rootView.findViewById(R.id.ad_details_metadata_view);
         mDescription = (TextView)rootView.findViewById(R.id.description_text);
         mReferenceNumber = (TextView)rootView.findViewById(R.id.reference_number);
+        mMapView = (MapView)rootView.findViewById(R.id.mapview);
+        mMapView.onCreate(savedInstanceState);
+        mMap = mMapView.getMap();
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mMap.setMyLocationEnabled(false);
+        MapsInitializer.initialize(container.getContext());
+
+
+        
         mContactPrompt = (TextView)rootView.findViewById(R.id.contact_prompt);
         mContactPostingPeriod = (TextView)rootView.findViewById(R.id.contact_posting_period);
         mCallButton = rootView.findViewById(R.id.call_button);
@@ -126,6 +148,14 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             mSmsButton.setVisibility(View.GONE);
         }
         mMetadataView.populateWith(ad.getMetadataList());
+
+        // Updates the location and zoom of the MapView
+        LatLng latLng = new LatLng(ad.getLatitude(), ad.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM_LEVEL);
+        mMap.moveCamera(cameraUpdate);
+        MarkerOptions options = new MarkerOptions();
+        options.position(latLng);
+        mMap.addMarker(options);
     }
 
     @Override
