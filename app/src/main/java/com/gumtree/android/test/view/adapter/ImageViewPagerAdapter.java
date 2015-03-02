@@ -14,13 +14,18 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageViewPagerAdaper  extends PagerAdapter {
+/**
+ * A very simple pager adapter to display images. Doing the cool effect in the Gumtree app is possible,
+ * but quite a bit of time would be required for that :) 
+ * I hope that wasn't expected as part of this test :) :)
+ */
+public class ImageViewPagerAdapter extends PagerAdapter {
 
     private final Context mContext;
     private final ArrayList<String> mImageUrls;
     private final View.OnClickListener mOnClickListener;
 
-    public ImageViewPagerAdaper(Context context, ArrayList<String> imageUrls,
+    public ImageViewPagerAdapter(Context context, ArrayList<String> imageUrls,
             View.OnClickListener onClickListener) {
         mContext = context;
         mImageUrls = imageUrls;

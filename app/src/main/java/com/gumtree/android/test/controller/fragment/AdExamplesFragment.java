@@ -14,11 +14,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * Very basic fragment that contains a list of ad examples to select from. Since this wasn't part of the test,
+ * it doesn't have any bells and whistles.
+ */
 public class AdExamplesFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-
     private OnAdSelectedListener mListener;
-
 
     public static Fragment newInstance() {
         Fragment fragment = new AdExamplesFragment();

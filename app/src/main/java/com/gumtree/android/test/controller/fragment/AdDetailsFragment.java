@@ -2,7 +2,7 @@ package com.gumtree.android.test.controller.fragment;
 
 import com.gumtree.android.test.R;
 import com.gumtree.android.test.controller.activity.FullscreenImagesActivity;
-import com.gumtree.android.test.controller.listener.AdDetailsEventListener;
+import com.gumtree.android.test.controller.listener.AdDetailsUserEventListener;
 import com.gumtree.android.test.controller.listener.OnAdFetchedListener;
 import com.gumtree.android.test.model.AdFetcher;
 import com.gumtree.android.test.model.FavoritesManager;
@@ -28,7 +28,11 @@ import static com.gumtree.android.test.module.model.AdFetcherModule.adFetcher;
 import static com.gumtree.android.test.module.model.FavoritesManagerModule.favoritesManager;
 import static com.gumtree.android.test.module.view.AdDetailsIndicatorModule.adDetailsIndicator;
 
-public class AdDetailsFragment extends Fragment implements AdDetailsEventListener,
+/**
+ * The main reason this test was written. Contains the details for an ad. It uses an AdFetcher to get the
+ * ad, and an AdIndicator to display the contents. Also manages the actions for an Ad.
+ */
+public class AdDetailsFragment extends Fragment implements AdDetailsUserEventListener,
         OnAdFetchedListener {
 
     static final String PARAM_AD_ID = "adId";

@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
+/**
+ * Since this is a little bit more complex than the rest of the views (shows one or two columns and
+ * can handle multiple rows), it deserves to be separated from the rest of the UI, and handled in isolation.
+ */
 public class AdDetailsMetadataView extends LinearLayout {
 
     private boolean mIsTabletLandscape;

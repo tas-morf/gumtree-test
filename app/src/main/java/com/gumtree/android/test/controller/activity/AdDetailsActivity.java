@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * Contains either simply the ddetails fragment (phones) or both the list of ads and the details fragment (tablets)
+ */
 public class AdDetailsActivity extends Activity implements OnAdSelectedListener {
 
     private static final String PARAM_ITEM_ID = "itemId";

@@ -9,10 +9,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.gumtree.android.test.R;
-import com.gumtree.android.test.controller.listener.AdDetailsEventListener;
+import com.gumtree.android.test.controller.listener.AdDetailsUserEventListener;
 import com.gumtree.android.test.model.bean.Ad;
 import com.gumtree.android.test.model.bean.Contact;
-import com.gumtree.android.test.view.adapter.ImageViewPagerAdaper;
+import com.gumtree.android.test.view.adapter.ImageViewPagerAdapter;
 import com.gumtree.android.test.view.widget.AdDetailsMetadataView;
 
 import android.content.res.Resources;
@@ -23,14 +23,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
+/**
+ * Uses android views to display the UI for the Ad Details.
+ */
 public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickListener {
 
     private static final float DEFAULT_ZOOM_LEVEL = 12;
     private final Resources mRes;
     
-    private AdDetailsEventListener mAdDetailsEventListener;
+    private AdDetailsUserEventListener mAdDetailsUserEventListener;
     
     private View mMainContent;
     private View mContactLayout;
@@ -58,8 +59,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
 
     @Override
     public View initialize(LayoutInflater inflater, ViewGroup container,
-            AdDetailsEventListener adDetailsEventListener, Bundle savedInstanceState) {
-        mAdDetailsEventListener = adDetailsEventListener;
+            AdDetailsUserEventListener adDetailsUserEventListener, Bundle savedInstanceState) {
+        mAdDetailsUserEventListener = adDetailsUserEventListener;
         
         View rootView = inflater.inflate(R.layout.fragment_ad_details, container, false);
         mImagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
@@ -115,7 +116,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         
         int imagesSize = ad.getImageUrls().size();
         if(imagesSize > 0) {
-            mImagePager.setAdapter(new ImageViewPagerAdaper(mImagePager.getContext(),
+            mImagePager.setAdapter(new ImageViewPagerAdapter(mImagePager.getContext(),
                     ad.getImageUrls(), this));
             mPicsNumber.setText(String.valueOf(imagesSize));
         } else {
@@ -193,21 +194,21 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             case R.id.report_ad_button:
                 break;
             case R.id.call_button:
-                mAdDetailsEventListener.onCallRequested((String)v.getTag());
+                mAdDetailsUserEventListener.onCallRequested((String)v.getTag());
                 break;
             case R.id.sms_button:
-                mAdDetailsEventListener.onSmsRequested((String) v.getTag());
+                mAdDetailsUserEventListener.onSmsRequested((String) v.getTag());
                 break;
             case R.id.email_button:
-                mAdDetailsEventListener.onEmailRequested((String) v.getTag());
+                mAdDetailsUserEventListener.onEmailRequested((String) v.getTag());
                 break;            
             case R.id.single_image:
-                mAdDetailsEventListener.onFullscreenImagesRequested(
-                        ((ImageViewPagerAdaper)mImagePager.getAdapter()).getAllItems(), 
+                mAdDetailsUserEventListener.onFullscreenImagesRequested(
+                        ((ImageViewPagerAdapter)mImagePager.getAdapter()).getAllItems(),
                         mImagePager.getCurrentItem());
                 break;
             case R.id.location_text:
-                mAdDetailsEventListener.onGoToMapsRequested((String)v.getTag());
+                mAdDetailsUserEventListener.onGoToMapsRequested((String)v.getTag());
                 break;
         }
     }

@@ -2,7 +2,10 @@ package com.gumtree.android.test.controller.listener;
 
 import java.util.ArrayList;
 
-public interface AdDetailsEventListener {
+/**
+ * Listens for all the user inut events that can happen on the Ad details page
+ */
+public interface AdDetailsUserEventListener {
 
     void onCallRequested(String phone);
 

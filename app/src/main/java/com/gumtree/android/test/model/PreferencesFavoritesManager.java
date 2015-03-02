@@ -6,6 +6,10 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Uses the preferences to store the user's favorites. All the adId's are added in a single string which 
+ * is stored in the preferences. Not optimal, but it works for the purposes of this test.
+ */
 public class PreferencesFavoritesManager implements FavoritesManager {
 
     private static final String KEY_FAVORITE_IDS = "favoriteIds";

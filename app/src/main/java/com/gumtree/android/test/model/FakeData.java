@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Static fake data
+ */
 public class FakeData {
     private static final Ad[] FAKE_ADS = {
             Ad.newBuilder()

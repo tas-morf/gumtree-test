@@ -1,7 +1,7 @@
 package com.gumtree.android.test.controller.activity;
 
 import com.gumtree.android.test.R;
-import com.gumtree.android.test.view.adapter.ImageViewPagerAdaper;
+import com.gumtree.android.test.view.adapter.ImageViewPagerAdapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+/**
+ * Simply shows the images fullscreen
+ */
 public class FullscreenImagesActivity extends Activity {
 
     private static final String PARAM_IMAGE_URLS = "imageUrls";
@@ -31,7 +34,7 @@ public class FullscreenImagesActivity extends Activity {
         setContentView(R.layout.activity_fullscreen_images);
         ViewPager viewPager = (ViewPager) findViewById(R.id.image_viewpager);
         Intent intent = getIntent();
-        viewPager.setAdapter(new ImageViewPagerAdaper(this,
+        viewPager.setAdapter(new ImageViewPagerAdapter(this,
                 intent.getStringArrayListExtra(PARAM_IMAGE_URLS), new NoOpOnClickListener()));
         viewPager.setCurrentItem(intent.getIntExtra(PARAM_SELECTED_ITEM, 0));
     }
