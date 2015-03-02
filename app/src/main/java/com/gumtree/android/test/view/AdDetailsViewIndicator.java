@@ -82,7 +82,6 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         MapsInitializer.initialize(container.getContext());
 
 
-
         mContactPrompt = (TextView)rootView.findViewById(R.id.contact_prompt);
         mContactPostingPeriod = (TextView)rootView.findViewById(R.id.contact_posting_period);
         mCallButton = rootView.findViewById(R.id.call_button);
@@ -160,7 +159,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         MarkerOptions options = new MarkerOptions();
         options.position(latLng);
         mMap.addMarker(options);
-        mMapView.invalidate();
+        mMapView.postInvalidateDelayed(1000);
         mLocationText.setTag("http://maps.google.com/maps?q=loc:" + ad.getLatitude() + "," + ad.getLongitude() + " (" +
                 ad.getTitle() + ")");
     }
@@ -171,6 +170,21 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         mProgress.setVisibility(View.GONE);
         mMainContent.setVisibility(View.GONE);
         mContactLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void resumeMap() {
+        mMapView.onResume();
+    }
+
+    @Override
+    public void pauseMap() {
+        mMapView.onPause();
+    }
+
+    @Override
+    public void destroyMap() {
+        mMapView.onDestroy();
     }
 
     @Override

@@ -18,4 +18,10 @@ public interface AdDetailsIndicator {
     void showAdData(Ad ad);
 
     void showError();
+
+    void resumeMap();
+
+    void pauseMap();
+
+    void destroyMap();
 }

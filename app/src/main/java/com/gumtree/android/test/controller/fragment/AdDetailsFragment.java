@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.ShareActionProvider;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.gumtree.android.test.module.model.AdFetcherModule.adFetcher;
 import static com.gumtree.android.test.module.model.FavoritesManagerModule.favoritesManager;
@@ -76,6 +75,24 @@ public class AdDetailsFragment extends Fragment implements AdDetailsEventListene
         mAdFetcher.fetchAd(getArguments().getInt(PARAM_AD_ID));
         mAdDetailsIndicator.showProgress();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mAdDetailsIndicator.resumeMap();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mAdDetailsIndicator.pauseMap();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAdDetailsIndicator.destroyMap();
     }
 
     @Override
