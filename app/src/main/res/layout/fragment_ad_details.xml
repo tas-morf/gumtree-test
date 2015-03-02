@@ -45,8 +45,7 @@
                 style="@style/reportAdLayoutStyle"
                 android:text="@string/report_ad"
                 android:drawableLeft="@android:drawable/ic_dialog_alert"
-                android:drawablePadding="@dimen/default_drawable_padding"
-                 />
+                android:drawablePadding="@dimen/default_drawable_padding" />
         </RelativeLayout>
 
     </ScrollView>

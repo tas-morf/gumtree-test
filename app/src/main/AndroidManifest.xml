@@ -26,6 +26,11 @@
         <activity
             android:name=".controller.activity.AdDetailsActivity"
             android:label="@string/ad_details" />
+        
+        <activity
+            android:name=".controller.activity.FullscreenImagesActivity"
+            android:label="@string/images"
+            android:theme="@style/AppThemeNoActionBar"/>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

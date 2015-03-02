@@ -4,7 +4,9 @@ import com.gumtree.android.test.model.bean.Ad;
 import com.gumtree.android.test.model.bean.Contact;
 import com.gumtree.android.test.model.bean.Metadata;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class FakeData {
     private static final Ad[] FAKE_ADS = {
@@ -24,7 +26,8 @@ public class FakeData {
             .latitude(51.513074)
             .longitude(-0.064094)
             .shareUrl("http://www.gumtree.com/p/pets/premium-quality-hypoallergenic-dog-food/1102460807.")
-            .imageUrls(Arrays.asList("http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/hUEAAOSwe-FU2cyC/$_86.JPG",
+            .imageUrls(getImageArrayList(
+                    "http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/hUEAAOSwe-FU2cyC/$_86.JPG",
                     "http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/IKMAAOSwPhdU2cyJ/$_86.JPG",
                     "http://i.ebayimg.com/00/s/NTI2WDkzNg==/z/3agAAOSwEeFU2cyU/$_86.JPG",
                     "http://i.ebayimg.com/00/s/NTg1WDkzNg==/z/hIIAAOSwNSxU2cyc/$_86.JPG",
@@ -78,7 +81,13 @@ public class FakeData {
             
             
     };
-    
+
+    private static ArrayList<String> getImageArrayList(String... strs) {
+        ArrayList<String> result = new ArrayList<>(strs.length);
+        Collections.addAll(result, strs);
+        return result;
+    }
+
     public Ad getAd(int adId) {
         if(adId < FAKE_ADS.length) {
             return FAKE_ADS[adId];

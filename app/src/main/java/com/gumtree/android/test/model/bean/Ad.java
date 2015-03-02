@@ -1,5 +1,6 @@
 package com.gumtree.android.test.model.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ad {
@@ -11,7 +12,7 @@ public class Ad {
     private int price;
     private long reference;
     private Contact contact;
-    private List<String> imageUrls;
+    private ArrayList<String> imageUrls;
     private List<Metadata> metadataList;
     private double latitude;
     private double longitude;
@@ -62,7 +63,7 @@ public class Ad {
         return contact;
     }
 
-    public List<String> getImageUrls() {
+    public ArrayList<String> getImageUrls() {
         return imageUrls;
     }
 
@@ -87,7 +88,7 @@ public class Ad {
         private int price;
         private long reference;
         private Contact contact;
-        private List<String> imageUrls;
+        private ArrayList<String> imageUrls;
         private List<Metadata> metadataList;
         private double latitude;
         private double longitude;
@@ -130,7 +131,7 @@ public class Ad {
             return this;
         }
 
-        public Builder imageUrls(List<String> imageUrls) {
+        public Builder imageUrls(ArrayList<String> imageUrls) {
             this.imageUrls = imageUrls;
             return this;
         }

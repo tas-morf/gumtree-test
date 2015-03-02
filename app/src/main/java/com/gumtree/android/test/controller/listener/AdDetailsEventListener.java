@@ -1,6 +1,6 @@
 package com.gumtree.android.test.controller.listener;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface AdDetailsEventListener {
 
@@ -10,7 +10,7 @@ public interface AdDetailsEventListener {
 
     void onEmailRequested(String email);
 
-    void onFullscreenImagesRequested(List<String> imageUrls);
+    void onFullscreenImagesRequested(ArrayList<String> imageUrls, int selectedItem);
 
     void onGoToMapsRequested(String mapsUri);
 }

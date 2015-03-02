@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickListener {
 
     private static final float DEFAULT_ZOOM_LEVEL = 12;
@@ -58,14 +60,13 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
     public View initialize(LayoutInflater inflater, ViewGroup container,
             AdDetailsEventListener adDetailsEventListener, Bundle savedInstanceState) {
         mAdDetailsEventListener = adDetailsEventListener;
+        
         View rootView = inflater.inflate(R.layout.fragment_ad_details, container, false);
         mImagePager = (ViewPager)rootView.findViewById(R.id.image_viewpager);
-
         mMainContent = rootView.findViewById(R.id.main_scrollview);
         mContactLayout = rootView.findViewById(R.id.contact_layout);
         mEmptyText = rootView.findViewById(R.id.empty_text);
         mProgress = rootView.findViewById(R.id.progress);
-        
         mPicsNumber = (TextView)rootView.findViewById(R.id.pics_number);
         mTitle = (TextView)rootView.findViewById(R.id.title);
         mLocationText = (TextView)rootView.findViewById(R.id.location_text);
@@ -116,7 +117,7 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         int imagesSize = ad.getImageUrls().size();
         if(imagesSize > 0) {
             mImagePager.setAdapter(new ImageViewPagerAdaper(mImagePager.getContext(),
-                    ad.getImageUrls()));
+                    ad.getImageUrls(), this));
             mPicsNumber.setText(String.valueOf(imagesSize));
         } else {
             mImagePager.setVisibility(View.GONE);
@@ -155,7 +156,8 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         MarkerOptions options = new MarkerOptions();
         options.position(latLng);
         mMap.addMarker(options);
-        mLocationText.setTag("http://maps.google.com/maps?q=loc:" + ad.getLatitude() + "," + ad.getLongitude() + " (" + 
+        mMapView.invalidate();
+        mLocationText.setTag("http://maps.google.com/maps?q=loc:" + ad.getLatitude() + "," + ad.getLongitude() + " (" +
                 ad.getTitle() + ")");
     }
 
@@ -181,8 +183,10 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
             case R.id.email_button:
                 mAdDetailsEventListener.onEmailRequested((String) v.getTag());
                 break;            
-            case R.id.image_viewpager:
-                mAdDetailsEventListener.onFullscreenImagesRequested(null);
+            case R.id.single_image:
+                mAdDetailsEventListener.onFullscreenImagesRequested(
+                        ((ImageViewPagerAdaper)mImagePager.getAdapter()).getAllItems(), 
+                        mImagePager.getCurrentItem());
                 break;
             case R.id.location_text:
                 mAdDetailsEventListener.onGoToMapsRequested((String)v.getTag());

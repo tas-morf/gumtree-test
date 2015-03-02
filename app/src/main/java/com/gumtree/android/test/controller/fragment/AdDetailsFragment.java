@@ -1,6 +1,7 @@
 package com.gumtree.android.test.controller.fragment;
 
 import com.gumtree.android.test.R;
+import com.gumtree.android.test.controller.activity.FullscreenImagesActivity;
 import com.gumtree.android.test.controller.listener.AdDetailsEventListener;
 import com.gumtree.android.test.controller.listener.OnAdFetchedListener;
 import com.gumtree.android.test.model.AdFetcher;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ShareActionProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.gumtree.android.test.module.model.AdFetcherModule.adFetcher;
@@ -134,8 +136,8 @@ public class AdDetailsFragment extends Fragment implements AdDetailsEventListene
     }
 
     @Override
-    public void onFullscreenImagesRequested(List<String> imageUrls) {
-
+    public void onFullscreenImagesRequested(ArrayList<String> imageUrls, int selectedItem) {
+        startActivity(FullscreenImagesActivity.getFullscreenImagesIntent(getActivity(), imageUrls, selectedItem));
     }
 
     @Override
