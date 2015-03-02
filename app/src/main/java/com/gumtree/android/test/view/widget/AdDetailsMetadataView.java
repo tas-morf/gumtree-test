@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AdDetailsMetadataView extends LinearLayout {
 
-    private boolean mIsTablet;
+    private boolean mIsTabletLandscape;
     private LinearLayout mLinearLayoutL;
     private LinearLayout mLinearLayoutR;
 
@@ -35,8 +35,8 @@ public class AdDetailsMetadataView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mIsTablet = getResources().getBoolean(R.bool.is_tablet);
-        if (mIsTablet) {
+        mIsTabletLandscape = getResources().getBoolean(R.bool.is_tablet_land);
+        if (mIsTabletLandscape) {
             setOrientation(HORIZONTAL);
             mLinearLayoutL = new LinearLayout(getContext());
             mLinearLayoutL.setOrientation(VERTICAL);
@@ -55,7 +55,7 @@ public class AdDetailsMetadataView extends LinearLayout {
         int i = 0;
         for (Metadata data : metadataList) {
             LinearLayout container;
-            if (mIsTablet) {
+            if (mIsTabletLandscape) {
                 if(i%2 == 0) {
                     container = mLinearLayoutL;
                 } else {
