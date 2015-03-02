@@ -125,7 +125,11 @@ public class AdDetailsViewIndicator implements AdDetailsIndicator, View.OnClickL
         }
         mTitle.setText(ad.getTitle());
         mLocationText.setText(ad.getLocation());
-        mPriceText.setText(mRes.getString(R.string.price_str, ad.getPrice()));
+        if(ad.getPrice() > 0) {
+            mPriceText.setText(mRes.getString(R.string.price_str, ad.getPrice()));
+        } else {
+            mPriceText.setVisibility(View.GONE);
+        }
         mDescription.setText(ad.getDescription());
         mReferenceNumber.setText(mRes.getString(R.string.reference_number_str, ad.getReference()));
         Contact contact = ad.getContact();
