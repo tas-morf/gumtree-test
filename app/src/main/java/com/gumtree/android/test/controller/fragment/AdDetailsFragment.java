@@ -31,7 +31,7 @@ import static com.gumtree.android.test.module.view.AdDetailsIndicatorModule.adDe
 public class AdDetailsFragment extends Fragment implements AdDetailsEventListener,
         OnAdFetchedListener {
 
-    private static final String PARAM_AD_ID = "adId";
+    static final String PARAM_AD_ID = "adId";
     
     private final AdFetcher mAdFetcher;
     private final FavoritesManager mFavoritesManager;
